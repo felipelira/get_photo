@@ -10,9 +10,11 @@ def create_folder(path):
 
 def download_images(urls, path):
 	create_folder(path)  # makes sure path exists
-
+	n = 0
 	for url in urls:
-		image_name = url.split("/")[-1]
+		n = n + 1
+		extension = url.split("/")[-1].split('.')[-1] # get the image extension
+		image_name = path.split('/')[-1] + '_' + str(n) + '.' + extension
 		image_path = os.path.join(path, image_name)
 
 		if not os.path.isfile(image_path):  # ignore if already downloaded
